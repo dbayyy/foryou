@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Ulang Tahun</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
     <style>
@@ -47,28 +48,28 @@
             }
         }
         .card h1 {
-            font-size: 34px;
+            font-size: clamp(24px, 5vw, 34px);
             margin-bottom: 10px;
             font-family: 'Lobster', cursive;
             color: #338fbd;
         }
         .card p {
-            font-size: 22px;
+            font-size: clamp(14px, 3vw, 22px);
             margin: 10px 0;
             color: #267d9a;
             text-align: justify;
         }
         .card .button {
-            padding: 18px 28px;
+            padding: 12px 24px;
             background-color: #3784b3;
             color: #fff;
             border: none;
             border-radius: 10px;
-            font-size: 23px;
+            font-size: clamp(14px, 2.5vw, 18px);
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
-            display: none; /* Awalnya tersembunyi */
+            display: none;
         }
         .card .button:hover {
             background-color: #a8edea;
@@ -83,28 +84,15 @@
             border: 2px solid #fed6e3;
         }
         @media (max-width: 768px) {
-            .card h1 {
-                font-size: 28px;
-            }
-            .card p {
-                font-size: 16px;
-            }
-            .card .button {
-                font-size: 14px;
-            }
-            .birthday-image {
-                max-width: 100%;
+            .card {
+                padding: 15px;
             }
         }
         @media (max-width: 480px) {
-            .card h1 {
-                font-size: 24px;
-            }
-            .card p {
-                font-size: 14px;
+            .card {
+                padding: 10px;
             }
             .card .button {
-                font-size: 12px;
                 padding: 8px 15px;
             }
         }
@@ -132,7 +120,6 @@
         const buttonEngga = document.getElementById("button-engga");
         const typingText = document.getElementById("typing-text");
 
-        // Tidak lagi melanjutkan waktu terakhir
         audio.currentTime = 0;
 
         window.onload = function () {
@@ -147,11 +134,10 @@
                     index++;
                     setTimeout(typeWriter, 90);
                 } else {
-                    // Tampilkan tombol setelah teks selesai diketik
                     buttonMau.style.display = "block";
                     buttonEngga.style.display = "block";
-                    buttonMau.style.animation = "slideUp 0.6s ease-out";
-                    buttonEngga.style.animation = "slideUp 0.6s ease-out";
+                    buttonMau.style.animation = "slideUp 0.7s ease-out";
+                    buttonEngga.style.animation = "slideUp 0.7s ease-out";
                 }
             }
             typeWriter();
