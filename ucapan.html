@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Selamat Ulang Tahun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #a8edea, #fed6e3);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .card {
+            background: linear-gradient(to right, #a8edea, #fed6e3);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            animation: slideUp 0.9s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            font-family: 'Lobster', cursive;
+            color: #338fbd;
+        }
+        .card p {
+            font-size: 22px;
+            margin: 10px 0;
+            color: #267d9a;
+            text-align: justify;
+        }
+        .card .button {
+            padding: 18px 28px;
+            background-color: #3784b3;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 23px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            display: none; /* Awalnya tersembunyi */
+        }
+        .card .button:hover {
+            background-color: #a8edea;
+            color: #333;
+        }
+        .birthday-image {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #fed6e3;
+        }
+        @media (max-width: 768px) {
+            .card h1 {
+                font-size: 28px;
+            }
+            .card p {
+                font-size: 16px;
+            }
+            .card .button {
+                font-size: 14px;
+            }
+            .birthday-image {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .card h1 {
+                font-size: 24px;
+            }
+            .card p {
+                font-size: 14px;
+            }
+            .card .button {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="sempurna.mp3" loop autoplay></audio>
+
+    <div class="card">
+        <h1>Hi Cantik!</h1>
+        <img src="ucapan.gif" class="birthday-image" alt="Birthday Cake">
+        <p id="typing-text"></p>
+
+        <a href="hasil1.html">
+            <button class="button" id="button-mau">Mau</button>
+        </a>
+        <a href="hasil2.html">
+            <button class="button" id="button-engga">Engga</button>
+        </a>
+    </div>
+
+    <script>
+        const audio = document.getElementById("background-music");
+        const buttonMau = document.getElementById("button-mau");
+        const buttonEngga = document.getElementById("button-engga");
+        const typingText = document.getElementById("typing-text");
+
+        audio.currentTime = 0;
+        audio.onplay = () => localStorage.setItem("isPlaying", "true");
+        audio.onpause = () => localStorage.setItem("isPlaying", "false");
+        audio.onended = () => {
+            localStorage.setItem("isPlaying", "false");
+            localStorage.removeItem("currentTime");
+        };
+
+        window.onload = function () {
+            audio.play();
+
+            const text = "Hi Win, jujur aku suka sama kamu... aku ngerasa nyaman deket kamu, aku suka semua tentangmu, makasi ya udah lahir di dunia ini, makasi juga buat mamakmu udah ngelahirin bidadari secantik ini hihi,, aku rasa kita kenal udah lumayan lama ya, bisa gak klo kita lebih dari sekedar teman?, kamu mau gak kalo kita pacaran?? klo mau dipikir dulu gpp ko ni aku isiin tombol dibawah, ntr kalo udah ada jawabannya ss ya kirim ke aku hihi, astungkara mau";
+            
+            let index = 0;
+            function typeWriter() {
+                if (index < text.length) {
+                    typingText.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 90);
+                } else {
+                    // Tampilkan tombol setelah teks selesai diketik
+                    buttonMau.style.display = "block";
+                    buttonEngga.style.display = "block";
+                    buttonMau.style.animation = "slideUp 0.6s ease-out";
+                    buttonEngga.style.animation = "slideUp 0.6s ease-out";
+                }
+            }
+            typeWriter();
+        };
+    </script>
+</body>
+</html>
