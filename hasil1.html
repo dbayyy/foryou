@@ -104,6 +104,14 @@
         const typingText = document.getElementById("typing-text");
         const buttonBunga = document.getElementById("button-bunga");
 
+        // Ambil waktu terakhir dari localStorage
+        const lastTime = localStorage.getItem("currentTime");
+        if (lastTime) {
+            audio.currentTime = parseFloat(lastTime); // Lanjutkan dari waktu terakhir
+        } else {
+            audio.currentTime = 0; // Mulai dari awal jika tidak ada waktu yang tersimpan
+        }
+
         // Text untuk ditampilkan secara perlahan
         const text = "makasi ya cantik udah mau sama aku, semoga kita selalu bahagia ya,, i love you...";
         let index = 0;
@@ -132,6 +140,11 @@
 
         audio.onpause = function () {
             localStorage.setItem("isPlaying", "false");
+        };
+
+        // Simpan waktu audio saat diperbarui
+        audio.ontimeupdate = function () {
+            localStorage.setItem("currentTime", audio.currentTime);
         };
 
         audio.onended = function () {
