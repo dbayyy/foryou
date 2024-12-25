@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Kedua</title>
+    <title>Halaman Ketiga</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
     <style>
          body {
@@ -116,17 +116,19 @@
             localStorage.removeItem("currentTime"); // Hapus waktu saat audio selesai
         };
 
+        // Melanjutkan audio dari halaman sebelumnya
         window.onload = function () {
             const isPlaying = localStorage.getItem("isPlaying");
             const currentTime = localStorage.getItem("currentTime");
 
+            // Jika audio sedang diputar sebelumnya, lanjutkan dari waktu yang tersimpan
             if (isPlaying === "true") {
                 audio.currentTime = currentTime ? parseFloat(currentTime) : 0; // Set waktu saat ini
                 audio.play();
             }
 
             // Simpan waktu saat ini setiap detik
-            setInterval(() => {
+            setInterval(function() {
                 if (!audio.paused) {
                     localStorage.setItem("currentTime", audio.currentTime);
                 }
