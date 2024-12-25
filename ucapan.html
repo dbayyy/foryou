@@ -132,13 +132,8 @@
         const buttonEngga = document.getElementById("button-engga");
         const typingText = document.getElementById("typing-text");
 
+        // Tidak lagi melanjutkan waktu terakhir
         audio.currentTime = 0;
-        audio.onplay = () => localStorage.setItem("isPlaying", "true");
-        audio.onpause = () => localStorage.setItem("isPlaying", "false");
-        audio.onended = () => {
-            localStorage.setItem("isPlaying", "false");
-            localStorage.removeItem("currentTime");
-        };
 
         window.onload = function () {
             audio.play();
